@@ -1,0 +1,679 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Layman Algebra: Learn linear algebra through intuition and visualization. Concept-focused math textbook by JW Method, perfect for foundation students and self-learners.">
+<title>JW Method | Layman Algebra</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
+<script>
+tailwind.config = {
+  theme: {
+    extend: {
+      colors: {
+        navy: '#0f2d57',
+        teal: '#2ca6a4',
+        accent: '#4a90e2',
+        light: '#f7f8fb',
+        dark: '#1e293b'
+      },
+      fontFamily: {
+        inter: ['Inter', 'system-ui', 'sans-serif'],
+      },
+    },
+  }
+}
+</script>
+<style type="text/tailwindcss">
+@layer utilities {
+  .content-auto {
+    content-visibility: auto;
+  }
+  .bg-gradient-primary {
+    background: linear-gradient(135deg, #2ca6a4 0%, #4a90e2 100%);
+  }
+  .bg-gradient-secondary {
+    background: linear-gradient(135deg, #f0f9ff 0%, #e6f7ff 100%);
+  }
+  .card-hover {
+    transition: all 0.3s ease;
+  }
+  .card-hover:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px -5px rgba(15, 45, 87, 0.1), 0 10px 10px -5px rgba(15, 45, 87, 0.04);
+  }
+  .btn-hover {
+    transition: all 0.3s ease;
+  }
+  .btn-hover:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 15px -3px rgba(44, 166, 164, 0.4), 0 4px 6px -2px rgba(44, 166, 164, 0.2);
+  }
+  .bg-pattern {
+    background-image: 
+      radial-gradient(circle at 10% 20%, rgba(44, 166, 164, 0.05) 0%, transparent 20%),
+      radial-gradient(circle at 90% 80%, rgba(74, 144, 226, 0.05) 0%, transparent 20%);
+  }
+  .detail-panel {
+    max-height: 0;
+    overflow: hidden;
+    opacity: 0;
+    transition: all 0.4s ease;
+  }
+  .detail-panel.active {
+    max-height: 3000px;
+    opacity: 1;
+  }
+}
+</style>
+</head>
+<body class="font-inter bg-light text-dark bg-pattern">
+
+<!-- Header -->
+<header class="sticky top-0 z-50 bg-white/80 backdrop-blur-md border-b border-gray-100 shadow-sm">
+  <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex justify-between items-center h-16">
+      <div class="flex items-center">
+        <img src="JW Logo.png" alt="JW Method Logo" class="h-8 w-auto">
+        <span class="ml-2 text-xl font-bold text-navy">JW Method</span>
+      </div>
+      <nav class="hidden md:block">
+        <ul class="flex space-x-8">
+          <li><a href="#home" class="text-navy hover:text-teal font-medium transition-colors">Home</a></li>
+          <li><a href="#about" class="text-navy hover:text-teal font-medium transition-colors">About Us</a></li>
+          <li><a href="#books" class="text-navy hover:text-teal font-medium transition-colors">Our Books</a></li>
+          <li><a href="#purchase" class="text-navy hover:text-teal font-medium transition-colors">Purchase</a></li>
+          <li><a href="#contact" class="text-navy hover:text-teal font-medium transition-colors">Contact</a></li>
+        </ul>
+      </nav>
+      <div class="md:hidden">
+        <button type="button" class="text-navy hover:text-teal">
+          <i class="fa fa-bars text-xl"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- Hero Section (Home) -->
+<section id="home" class="py-16 md:py-24">
+  <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex flex-col md:flex-row items-center">
+      <div class="md:w-1/2 mb-10 md:mb-0">
+        <h1 class="text-[clamp(2rem,5vw,3.5rem)] font-bold leading-tight text-navy mb-6">
+          Understand Linear Algebra <span class="text-teal">Conceptually</span>
+        </h1>
+        <p class="text-lg text-gray-600 mb-8">
+          Learn through intuition, visualization, and genuine understanding rather than memorizing formulas.
+        </p>
+        <div class="bg-white rounded-xl shadow-lg p-6 mb-8 card-hover">
+          <h2 class="text-2xl font-bold text-navy mb-2">Layman Algebra</h2>
+          <p class="text-gray-600 mb-4">Linear Algebra Without the Jargon</p>
+          <p class="text-gray-700 font-medium">By Ng Ji Wei</p>
+          <p class="text-xl font-bold text-teal mt-4">RM 69.90</p>
+          <p class="text-sm text-gray-500">(Physical Book Only)</p>
+        </div>
+        <div class="flex flex-wrap gap-4">
+          <a href="#books" class="inline-flex items-center px-8 py-3 border border-transparent text-base font-medium rounded-lg text-white bg-gradient-primary btn-hover shadow-md">
+            Explore Book
+            <i class="fa fa-arrow-down ml-2"></i>
+          </a>
+          <a href="#purchase" class="inline-flex items-center px-8 py-3 border-2 border-teal text-base font-medium rounded-lg text-teal bg-transparent btn-hover">
+            Order Now
+          </a>
+        </div>
+      </div>
+      <div class="md:w-1/2">
+        <div class="relative">
+          <div class="absolute inset-0 bg-gradient-primary rounded-2xl opacity-20 transform rotate-3"></div>
+          <div class="relative bg-white rounded-2xl shadow-xl overflow-hidden">
+            <img src="LA Book Cover.png" alt="Layman Algebra Book Cover" class="w-full h-auto object-cover p-8">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- About JW Method (Business Intro - Part of Home) -->
+<section id="about" class="py-16 md:py-20 bg-white">
+  <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="max-w-3xl mx-auto text-center mb-12">
+      <h2 class="text-3xl font-bold text-navy mb-6">About JW Method</h2>
+      <p class="text-gray-700 text-lg leading-relaxed">
+        JW Method is an independent Malaysian publishing house specializing in high-quality, concept-driven mathematics and STEM educational books. Our core mission is to help learners understand the ideas behind mathematics rather than simply memorizing formulas and procedures.
+      </p>
+    </div>
+    
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+      <div class="bg-light rounded-xl shadow-md p-6 card-hover text-center">
+        <div class="h-14 w-14 rounded-full bg-gradient-primary flex items-center justify-center text-white mx-auto mb-4">
+          <i class="fa fa-lightbulb-o text-xl"></i>
+        </div>
+        <h3 class="text-xl font-bold text-navy mb-3">Our Philosophy</h3>
+        <p class="text-gray-600 text-sm">Intuition before formulas, visual learning first, and clear jargon-free writing.</p>
+      </div>
+      
+      <div class="bg-light rounded-xl shadow-md p-6 card-hover text-center">
+        <div class="h-14 w-14 rounded-full bg-gradient-primary flex items-center justify-center text-white mx-auto mb-4">
+          <i class="fa fa-book text-xl"></i>
+        </div>
+        <h3 class="text-xl font-bold text-navy mb-3">Our Focus</h3>
+        <p class="text-gray-600 text-sm">University-level math textbooks, STEM concept guides, and data science resources.</p>
+      </div>
+      
+      <div class="bg-light rounded-xl shadow-md p-6 card-hover text-center">
+        <div class="h-14 w-14 rounded-full bg-gradient-primary flex items-center justify-center text-white mx-auto mb-4">
+          <i class="fa fa-handshake-o text-xl"></i>
+        </div>
+        <h3 class="text-xl font-bold text-navy mb-3">Collaborate</h3>
+        <p class="text-gray-600 text-sm">We partner with educators and authors who share our vision for better math education.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Our Books Section -->
+<section id="books" class="py-16 md:py-24">
+  <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+    <h2 class="text-3xl font-bold text-navy mb-4 text-center">Our Books</h2>
+    <p class="text-center text-gray-600 mb-12">Click "View Details" to learn more about each title</p>
+    
+    <!-- Book Cards Grid -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 mb-8">
+      <!-- Book 1 - Layman Algebra -->
+      <div class="bg-white rounded-xl shadow-md overflow-hidden card-hover">
+        <div class="h-56 bg-light flex items-center justify-center">
+          <img src="LA Book Cover.png" alt="Layman Algebra Cover" class="w-full h-full object-contain p-4">
+        </div>
+        <div class="p-6">
+          <h3 class="text-xl font-bold text-navy mb-2">Layman Algebra</h3>
+          <p class="text-gray-600 mb-4">Linear Algebra Without the Jargon</p>
+          <div class="flex justify-between items-center">
+            <span class="text-xl font-bold text-teal">RM 69.90</span>
+            <button onclick="toggleDetail('book1')" class="text-sm font-medium text-accent hover:text-teal transition-colors flex items-center">
+              View Details <i class="fa fa-chevron-down ml-1"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Book 2 - Future -->
+      <div class="bg-white rounded-xl shadow-md overflow-hidden card-hover opacity-70">
+        <div class="h-56 bg-light flex items-center justify-center">
+          <div class="text-5xl text-gray-400">
+            <i class="fa fa-book"></i>
+          </div>
+        </div>
+        <div class="p-6">
+          <h3 class="text-xl font-bold text-navy mb-2">Future Title</h3>
+          <p class="text-gray-600 mb-4">Coming Soon</p>
+          <div class="flex justify-between items-center">
+            <span class="text-gray-500">TBA</span>
+            <button onclick="toggleDetail('book2')" class="text-sm font-medium text-gray-400 flex items-center">
+              View Details <i class="fa fa-chevron-down ml-1"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Book 3 - Future -->
+      <div class="bg-white rounded-xl shadow-md overflow-hidden card-hover opacity-70">
+        <div class="h-56 bg-light flex items-center justify-center">
+          <div class="text-5xl text-gray-400">
+            <i class="fa fa-book"></i>
+          </div>
+        </div>
+        <div class="p-6">
+          <h3 class="text-xl font-bold text-navy mb-2">Future Title</h3>
+          <p class="text-gray-600 mb-4">Coming Soon</p>
+          <div class="flex justify-between items-center">
+            <span class="text-gray-500">TBA</span>
+            <button onclick="toggleDetail('book3')" class="text-sm font-medium text-gray-400 flex items-center">
+              View Details <i class="fa fa-chevron-down ml-1"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Book 1 Detail Panel (Layman Algebra) -->
+    <div id="book1-detail" class="detail-panel">
+      <div class="bg-white rounded-2xl shadow-xl p-8 md:p-10">
+        <div class="flex justify-between items-start mb-8">
+          <h3 class="text-2xl font-bold text-navy">Layman Algebra — Full Details</h3>
+          <button onclick="toggleDetail('book1')" class="text-gray-400 hover:text-navy">
+            <i class="fa fa-times text-xl"></i>
+          </button>
+        </div>
+        
+        <!-- Flex layout for book details -->
+        <div class="flex flex-col lg:flex-row gap-10">
+          <!-- Left: Book Image -->
+          <div class="lg:w-1/3 flex-shrink-0">
+            <div class="bg-light rounded-xl p-6 sticky top-24">
+              <img src="LA Book Cover.png" alt="Layman Algebra" class="w-full mx-auto">
+              <div class="mt-6 text-center">
+                <p class="text-2xl font-bold text-teal mb-2">RM 69.90</p>
+                <p class="text-sm text-gray-500 mb-4">Physical Book Only</p>
+                <a href="#purchase" class="inline-block w-full px-6 py-3 bg-gradient-primary text-white font-medium rounded-lg btn-hover">
+                  Order Now
+                </a>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Right: Book Details -->
+          <div class="lg:w-2/3 space-y-8">
+            <!-- Overview -->
+            <div>
+              <h4 class="text-lg font-bold text-navy mb-3">Book Overview</h4>
+              <p class="text-gray-700 leading-relaxed">
+                Layman Algebra isn't just another linear algebra textbook — it's the book that finally makes linear algebra click for everyone. Written in a warm, conversational tone like a patient tutor sitting beside you, this book takes a geometry-first approach: you'll see vectors as directions in space, visualize matrices as space transformers, and understand eigenvalues as the directions that don't bend — all before touching a single formula.
+              </p>
+            </div>
+            
+            <!-- Why Students Love It + Who It's For -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div class="bg-light rounded-xl p-5">
+                <h4 class="text-lg font-bold text-navy mb-3">Why Students Love It</h4>
+                <ul class="space-y-2 text-sm">
+                  <li class="flex items-start">
+                    <i class="fa fa-check-circle text-teal mt-1 mr-2"></i>
+                    <span>Geometry-first learning approach</span>
+                  </li>
+                  <li class="flex items-start">
+                    <i class="fa fa-check-circle text-teal mt-1 mr-2"></i>
+                    <span>Jargon-free explanations</span>
+                  </li>
+                  <li class="flex items-start">
+                    <i class="fa fa-check-circle text-teal mt-1 mr-2"></i>
+                    <span>Friendly tutor-style writing</span>
+                  </li>
+                  <li class="flex items-start">
+                    <i class="fa fa-check-circle text-teal mt-1 mr-2"></i>
+                    <span>Real-world examples</span>
+                  </li>
+                </ul>
+              </div>
+              <div class="bg-light rounded-xl p-5">
+                <h4 class="text-lg font-bold text-navy mb-3">Who Is It For?</h4>
+                <ul class="space-y-2 text-sm">
+                  <li class="flex items-start">
+                    <i class="fa fa-check-circle text-teal mt-1 mr-2"></i>
+                    <span>University foundation students</span>
+                  </li>
+                  <li class="flex items-start">
+                    <i class="fa fa-check-circle text-teal mt-1 mr-2"></i>
+                    <span>Self-learners & data science enthusiasts</span>
+                  </li>
+                  <li class="flex items-start">
+                    <i class="fa fa-check-circle text-teal mt-1 mr-2"></i>
+                    <span>Graphics & programming learners</span>
+                  </li>
+                  <li class="flex items-start">
+                    <i class="fa fa-check-circle text-teal mt-1 mr-2"></i>
+                    <span>Anyone seeking true understanding</span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            
+            <!-- Chapter Overview -->
+            <div>
+              <h4 class="text-lg font-bold text-navy mb-4">Chapter Overview</h4>
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                <div class="border border-gray-100 rounded-lg p-3">
+                  <p class="font-medium text-navy text-sm">Chapter 1: What Vectors Really Are</p>
+                  <p class="text-xs text-gray-500">A Geometric Introduction</p>
+                </div>
+                <div class="border border-gray-100 rounded-lg p-3">
+                  <p class="font-medium text-navy text-sm">Chapter 2: Matrices as Space Transformers</p>
+                  <p class="text-xs text-gray-500">Understanding linear transformations</p>
+                </div>
+                <div class="border border-gray-100 rounded-lg p-3">
+                  <p class="font-medium text-navy text-sm">Chapter 3: Systems of Equations</p>
+                  <p class="text-xs text-gray-500">Linear independence & solutions</p>
+                </div>
+                <div class="border border-gray-100 rounded-lg p-3">
+                  <p class="font-medium text-navy text-sm">Chapter 4: Dot & Cross Products</p>
+                  <p class="text-xs text-gray-500">Projections & geometric meaning</p>
+                </div>
+                <div class="border border-gray-100 rounded-lg p-3">
+                  <p class="font-medium text-navy text-sm">Chapter 5: Eigenvalues & Eigenvectors</p>
+                  <p class="text-xs text-gray-500">Diagonalization simplified</p>
+                </div>
+                <div class="border border-gray-100 rounded-lg p-3">
+                  <p class="font-medium text-navy text-sm">Chapter 6: Real-World Applications</p>
+                  <p class="text-xs text-gray-500">Graphics & data science</p>
+                </div>
+              </div>
+            </div>
+            
+            <!-- About Author -->
+            <div class="bg-gradient-secondary rounded-xl p-6">
+              <h4 class="text-lg font-bold text-navy mb-3">About the Author</h4>
+              <p class="text-gray-700 text-sm">
+                <strong>Ng Ji Wei</strong> is a mathematics educator with years of experience teaching IGCSE Mathematics and Additional Mathematics to students across Malaysia, China, Luxembourg and beyond. He is currently pursuing a Bachelor of Science in Actuarial Studies. As both an educator and a learner frustrated by how most standard textbooks prioritize rote computation over genuine insight, he wrote Layman Algebra to bridge the gap between abstract formulas and intuitive geometric understanding.              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Book 2 Detail Panel (Placeholder) -->
+    <div id="book2-detail" class="detail-panel">
+      <div class="bg-white rounded-2xl shadow-xl p-8 md:p-10">
+        <div class="flex justify-between items-start mb-6">
+          <h3 class="text-2xl font-bold text-navy">Future Title — Coming Soon</h3>
+          <button onclick="toggleDetail('book2')" class="text-gray-400 hover:text-navy">
+            <i class="fa fa-times text-xl"></i>
+          </button>
+        </div>
+        <p class="text-gray-500">This title is currently in development. Check back later for updates!</p>
+      </div>
+    </div>
+
+    <!-- Book 3 Detail Panel (Placeholder) -->
+    <div id="book3-detail" class="detail-panel">
+      <div class="bg-white rounded-2xl shadow-xl p-8 md:p-10">
+        <div class="flex justify-between items-start mb-6">
+          <h3 class="text-2xl font-bold text-navy">Future Title — Coming Soon</h3>
+          <button onclick="toggleDetail('book3')" class="text-gray-400 hover:text-navy">
+            <i class="fa fa-times text-xl"></i>
+          </button>
+        </div>
+        <p class="text-gray-500">This title is currently in development. Check back later for updates!</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Testimonials -->
+<section id="testimonials" class="py-16 md:py-24 bg-white">
+  <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+    <h2 class="text-3xl font-bold text-navy mb-12 text-center">What Readers Say</h2>
+    
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+      <div class="bg-light rounded-xl shadow-md p-6 card-hover">
+        <div class="flex items-center mb-4">
+          <div class="text-yellow-400 flex">
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star"></i>
+          </div>
+          <span class="ml-2 text-sm text-gray-600">5.0</span>
+        </div>
+        <p class="text-gray-700 italic mb-6">
+          "I struggled with linear algebra for an entire semester until I found this book. For the first time, I actually understand what matrices do instead of just crunching numbers."
+        </p>
+        <div class="flex items-center">
+          <div class="h-10 w-10 rounded-full bg-gradient-primary flex items-center justify-center text-white font-medium">
+            F
+          </div>
+          <div class="ml-3">
+            <p class="font-medium text-navy">Foundation Student</p>
+            <p class="text-sm text-gray-600">UTAR</p>
+          </div>
+        </div>
+      </div>
+      
+      <div class="bg-light rounded-xl shadow-md p-6 card-hover">
+        <div class="flex items-center mb-4">
+          <div class="text-yellow-400 flex">
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star"></i>
+          </div>
+          <span class="ml-2 text-sm text-gray-600">5.0</span>
+        </div>
+        <p class="text-gray-700 italic mb-6">
+          "The geometry-first approach completely changed how I see linear algebra. The writing is so friendly and clear, it feels like having a tutor explaining things to you."
+        </p>
+        <div class="flex items-center">
+          <div class="h-10 w-10 rounded-full bg-gradient-primary flex items-center justify-center text-white font-medium">
+            D
+          </div>
+          <div class="ml-3">
+            <p class="font-medium text-navy">Data Science Enthusiast</p>
+            <p class="text-sm text-gray-600">Self-Learner</p>
+          </div>
+        </div>
+      </div>
+      
+      <div class="bg-light rounded-xl shadow-md p-6 card-hover">
+        <div class="flex items-center mb-4">
+          <div class="text-yellow-400 flex">
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star-half-o"></i>
+          </div>
+          <span class="ml-2 text-sm text-gray-600">4.5</span>
+        </div>
+        <p class="text-gray-700 italic mb-6">
+          "Finally a textbook that explains the 'why' behind every formula. I highly recommend this to anyone who feels lost in their linear algebra class."
+        </p>
+        <div class="flex items-center">
+          <div class="h-10 w-10 rounded-full bg-gradient-primary flex items-center justify-center text-white font-medium">
+            A
+          </div>
+          <div class="ml-3">
+            <p class="font-medium text-navy">A-Level Graduate</p>
+            <p class="text-sm text-gray-600">STPM</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section id="faq" class="py-16 md:py-24">
+  <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+    <h2 class="text-3xl font-bold text-navy mb-12 text-center">Frequently Asked Questions</h2>
+    
+    <div class="max-w-3xl mx-auto">
+      <div class="space-y-6">
+        <div class="bg-white rounded-xl shadow-sm p-6 card-hover">
+          <h4 class="text-lg font-medium text-navy mb-3">Do I need any prior math knowledge to read this book?</h4>
+          <p class="text-gray-700">
+            No. The book starts from absolute basics and builds up gradually. It is designed for complete beginners and students who are new to linear algebra.
+          </p>
+        </div>
+        
+        <div class="bg-white rounded-xl shadow-sm p-6 card-hover">
+          <h4 class="text-lg font-medium text-navy mb-3">Is this book suitable for university foundation studies?</h4>
+          <p class="text-gray-700">
+            Yes. Layman Algebra aligns with most foundation-level linear algebra syllabi in Malaysian universities, and also serves as a great supplement for undergraduate courses.
+          </p>
+        </div>
+        
+        <div class="bg-white rounded-xl shadow-sm p-6 card-hover">
+          <h4 class="text-lg font-medium text-navy mb-3">Is there an electronic version available?</h4>
+          <p class="text-gray-700">
+            Currently, Layman Algebra is only available as a physical printed book. We are exploring digital editions for future releases.
+          </p>
+        </div>
+        
+        <div class="bg-white rounded-xl shadow-sm p-6 card-hover">
+          <h4 class="text-lg font-medium text-navy mb-3">How long does delivery take?</h4>
+          <p class="text-gray-700">
+            Orders are typically processed within 2–3 working days. West Malaysia delivery takes 3–5 working days; East Malaysia takes 5–7 working days.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Purchase -->
+<section id="purchase" class="py-16 md:py-24 bg-white">
+  <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="max-w-4xl mx-auto bg-gradient-secondary rounded-2xl shadow-xl overflow-hidden">
+      <div class="p-8 md:p-12 text-center">
+        <h2 class="text-3xl font-bold text-navy mb-6">Get Your Copy Today</h2>
+        <p class="text-gray-700 font-medium mb-8 max-w-xl mx-auto">
+          Click the link below to place your order for your physical copy of Layman Algebra.
+        </p>
+        
+        <a href="[Paste Google Form URL Here]" target="_blank" class="inline-flex items-center justify-center px-10 py-4 border border-transparent text-lg font-medium rounded-lg text-white bg-gradient-primary btn-hover shadow-lg">
+          <i class="fa fa-shopping-cart mr-2"></i>
+          Order Now — RM 69.90
+        </a>
+        
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-12 text-center">
+          <div class="bg-white/70 rounded-lg p-4">
+            <div class="text-teal text-2xl mb-2">
+              <i class="fa fa-truck"></i>
+            </div>
+            <h3 class="text-sm font-medium text-navy">Nationwide Delivery</h3>
+            <p class="text-xs text-gray-600 mt-1">West & East Malaysia</p>
+          </div>
+          
+          <div class="bg-white/70 rounded-lg p-4">
+            <div class="text-teal text-2xl mb-2">
+              <i class="fa fa-shield"></i>
+            </div>
+            <h3 class="text-sm font-medium text-navy">Secure Payment</h3>
+            <p class="text-xs text-gray-600 mt-1">Multiple Options</p>
+          </div>
+          
+          <div class="bg-white/70 rounded-lg p-4">
+            <div class="text-teal text-2xl mb-2">
+              <i class="fa fa-refresh"></i>
+            </div>
+            <h3 class="text-sm font-medium text-navy">Easy Returns</h3>
+            <p class="text-xs text-gray-600 mt-1">7-Day Policy</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Contact / Follow -->
+<section id="contact" class="py-16 md:py-24">
+  <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+    <h2 class="text-3xl font-bold text-navy mb-12 text-center">Follow JW Method</h2>
+    <p class="text-center text-gray-600 mb-12">For math learning tips, updates, and new book releases</p>
+    
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-3xl mx-auto">
+      <a href="[Paste Instagram URL Here]" target="_blank" class="bg-white rounded-xl shadow-md p-6 text-center card-hover">
+        <div class="text-3xl text-pink-500 mb-3">
+          <i class="fa fa-instagram"></i>
+        </div>
+        <h3 class="text-lg font-medium text-navy">Instagram</h3>
+        <p class="text-sm text-gray-500 mt-2">Follow for daily tips</p>
+      </a>
+      
+      <a href="[Paste TikTok URL Here]" target="_blank" class="bg-white rounded-xl shadow-md p-6 text-center card-hover">
+        <div class="text-3xl text-black mb-3">
+          <i class="fa fa-music"></i>
+        </div>
+        <h3 class="text-lg font-medium text-navy">TikTok</h3>
+        <p class="text-sm text-gray-500 mt-2">Watch video tutorials</p>
+      </a>
+      
+      <a href="[Paste Xiaohongshu URL Here]" target="_blank" class="bg-white rounded-xl shadow-md p-6 text-center card-hover">
+        <div class="text-3xl text-red-500 mb-3">
+          <i class="fa fa-book"></i>
+        </div>
+        <h3 class="text-lg font-medium text-navy">Xiaohongshu</h3>
+        <p class="text-sm text-gray-500 mt-2">Read in-depth reviews</p>
+      </a>
+      
+      <div class="bg-white rounded-xl shadow-md p-6 text-center card-hover opacity-70">
+        <div class="text-3xl text-gray-400 mb-3">
+          <i class="fa fa-globe"></i>
+        </div>
+        <h3 class="text-lg font-medium text-navy">Future Platform</h3>
+        <p class="text-sm text-gray-500 mt-2">Coming soon</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="bg-navy text-white py-12">
+  <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+      <div>
+        <div class="flex items-center mb-4">
+          <img src="JW Logo.png" alt="JW Method Logo" class="h-8 w-auto">
+          <span class="ml-2 text-xl font-bold">JW Method</span>
+        </div>
+        <p class="text-white/70">
+          Concept-Focused Math Education Books
+        </p>
+      </div>
+      
+      <div>
+        <h3 class="text-lg font-medium mb-4">Quick Links</h3>
+        <ul class="space-y-2">
+          <li><a href="#home" class="text-white/70 hover:text-white transition-colors">Home</a></li>
+          <li><a href="#about" class="text-white/70 hover:text-white transition-colors">About Us</a></li>
+          <li><a href="#books" class="text-white/70 hover:text-white transition-colors">Our Books</a></li>
+          <li><a href="#purchase" class="text-white/70 hover:text-white transition-colors">Purchase</a></li>
+          <li><a href="#contact" class="text-white/70 hover:text-white transition-colors">Contact</a></li>
+        </ul>
+      </div>
+      
+      <div>
+        <h3 class="text-lg font-medium mb-4">Contact</h3>
+        <ul class="space-y-2">
+          <li class="flex items-center">
+            <i class="fa fa-envelope-o mr-2 text-white/70"></i>
+            <span class="text-white/70">info@jwmethod.com</span>
+          </li>
+          <li class="flex items-center">
+            <i class="fa fa-phone mr-2 text-white/70"></i>
+            <span class="text-white/70">+60 12 345 6789</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+    
+    <div class="mt-8 pt-8 border-t border-white/10 text-center">
+      <p class="text-white/50 text-sm">
+        &copy; 2026 JW Method. All rights reserved.
+      </p>
+      <p class="text-white/50 text-xs mt-2">
+        <a href="#" class="hover:text-white transition-colors">Privacy Policy</a> | <a href="#" class="hover:text-white transition-colors">Terms of Service</a>
+      </p>
+    </div>
+  </div>
+</footer>
+
+<script>
+function toggleDetail(bookId) {
+  const panel = document.getElementById(bookId + '-detail');
+  const allPanels = document.querySelectorAll('.detail-panel');
+  
+  // Close all other panels
+  allPanels.forEach(p => {
+    if (p !== panel) {
+      p.classList.remove('active');
+    }
+  });
+  
+  // Toggle current panel
+  panel.classList.toggle('active');
+  
+  // Scroll to panel if opening
+  if (panel.classList.contains('active')) {
+    setTimeout(() => {
+      panel.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }, 300);
+  }
+}
+</script>
+
+</body>
+</html>
